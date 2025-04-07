@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Team {
     private int id;
     private ConsultantDoctor teamLeader;
-    private ArrayList<Doctor> doctors;
+    private ArrayList<JuniorDoctor> doctors;
     private ArrayList<Patient> patients;
 
     public Team(int id, ConsultantDoctor teamLeader) {
@@ -13,6 +13,10 @@ public class Team {
         this.teamLeader = teamLeader;
         this.doctors = new ArrayList<>();
         this.patients = new ArrayList<>();
+    }
+    
+    public void addJuniorDoctor(JuniorDoctor jd){
+        this.doctors.add(jd);
     }
 
     public void addPatient(Patient patient){
@@ -35,11 +39,11 @@ public class Team {
         this.teamLeader = teamLeader;
     }
 
-    public ArrayList<Doctor> getDoctors() {
+    public ArrayList<JuniorDoctor> getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(ArrayList<Doctor> doctors) {
+    public void setDoctors(ArrayList<JuniorDoctor> doctors) {
         this.doctors = doctors;
     }
 

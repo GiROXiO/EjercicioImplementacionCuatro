@@ -27,15 +27,18 @@ public class Hospital {
     }
     
     public void addJuniorDoctor(Team team, int jdId){
-        
+        JuniorDoctor jd = new JuniorDoctor(jdId);
+        jd.setTeam(team);
+        team.addJuniorDoctor(jd);
     }
     
     public void addWard(int wardId){
-        
+        this.wards.add(new Ward(wardId));
     }
     
     public void addPatient(Ward ward, Team team, int patientId){
-        
+        ward.addPatient(new Patient(patientId, team, ward));
+        team.addPatient(new Patient(patientId, team, ward));
     }
     
     public Ward getWard(int wardId){
@@ -46,12 +49,15 @@ public class Hospital {
         return null;
     }
     
-    public void assignPatientDoctor(Patient patient, int id){
-        
+    public void assignPatientDoctor(Patient patient, int doctorId){
+        patient.addDoctor(this.getDoctor(patient.getTeam().getId()+doctorId));
     }
     
-    public void assignAppoiment(Patient patient, int id){
-        
+    public void assignAppoiment(Patient patient, int doctorId){
+        JuniorDoctor doctor = this.getDoctor(patient.getTeam().getId()+doctorId);
+        Appoiment apmt = new Appoiment(doctor, patient);
+        patient.addAppoiment(apmt);
+        doctor.addAppoiment(apmt);
     }
     
     public Patient getPatient(int patientId){
@@ -59,6 +65,16 @@ public class Hospital {
             for(Patient patient : ward.getPatients()){
                 if(patient.getId()==patientId)
                     return patient;
+            }
+        }
+        return null;
+    }
+    
+    public JuniorDoctor getDoctor(int doctorId){
+        for(Team team : this.teams){
+            for(JuniorDoctor doctor : team.getDoctors()){
+                if(doctor.getId()==doctorId)
+                    return doctor;
             }
         }
         return null;

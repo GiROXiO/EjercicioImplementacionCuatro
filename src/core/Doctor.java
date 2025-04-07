@@ -14,7 +14,11 @@ public abstract class Doctor {
         this.appoiments = new ArrayList<>();
         this.patients = new ArrayList<>();
     }
-
+    
+    public void addAppoiment(Appoiment appoiment){
+        this.appoiments.add(appoiment);
+    }
+    
     public int getId() {
         return id;
     }

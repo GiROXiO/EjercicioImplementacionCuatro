@@ -20,6 +20,10 @@ public class Patient {
     public void addDoctor(Doctor doctor){
         this.doctors.add(doctor);
     }
+    
+    public void addAppoiment(Appoiment appoiment){
+        this.appoiments.add(appoiment);
+    }
 
     public int getId() {
         return id;
